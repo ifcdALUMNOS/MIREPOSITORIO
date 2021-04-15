@@ -1,0 +1,41 @@
+<?php
+// Algoritmos de ordenación: QuickSort y Bubble
+include 'Inicializacion.php';
+include 'FuncionesOrdenacion.php';
+include 'FuncionesAuxiliares.php';
+$aArrayAux = [];
+//echo 'Original Array : '.implode(',',$my_array)."\n";
+echo 'El valor medio está en la posición '.fPosicionValorMedio( $my_array, $media)."\n";
+$time_start  = microtime(true);
+$aArrayAux   = quick_sort($my_array, $media);
+$time_end    = microtime(true);
+$time        = $time_end - $time_start;
+//echo 'Quick sort método 1: '.implode(',',$aArrayAux)."\n";
+echo "Quick sort método 1: (".number_format(($time)*1000000, 2, ',', ' ').") \n";
+$time_start2 = microtime(true);
+$aArrayAux   = quick_sort2($my_array);
+$time_end2   = microtime(true);
+$time2       = $time_end2 - $time_start2;
+//echo 'Quick sort método 2: '.implode(',',$aArrayAux)."\n";;
+echo "Quick sort método 2: (".number_format(($time2)*1000000, 2, ',', ' ').") \n";
+if ( $time < $time2) {
+    echo "El algoritmo más rápido ha sido el primero (".number_format(($time2-$time)*1000000, 2, ',', ' ').").\n";
+} elseif ( $time > $time2 ) {
+    echo "El algoritmo más rápido ha sido el segundo (".number_format(($time-$time2)*1000000, 2, ',', ' ').").\n";
+} else {
+    echo "Han tardado lo mismo.\n";
+} 
+$time_start  = microtime(true);
+$aArrayAux   = bubbleSort( $my_array);
+$time_end    = microtime(true);
+$time        = $time_end - $time_start;
+//echo 'Ordenación método burbuja : '.implode(',',$aArrayAux)."\n";
+echo "Ordenación método burbuja :  (".number_format(($time)*1000000, 2, ',', ' ').") \n";
+$time_start  = microtime(true);
+$aArrayAux   = cocktailSort( $my_array);
+$time_end    = microtime(true);
+$time        = $time_end - $time_start;
+//echo 'Ordenación método Cocktelera : '.implode(',',$aArrayAux)."\n";
+echo "Ordenación método Coctelera :  (".number_format(($time)*1000000, 2, ',', ' ').") \n";
+
+?>

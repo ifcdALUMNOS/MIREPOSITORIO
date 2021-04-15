@@ -1,0 +1,19 @@
+<?php
+function fPosicionValorMedio( $aArray, $dMedio) {
+    $iPivotKey         = 0;
+    $dDiferenciaMinima = 1000;
+    //echo "La media es : ".$dMedio."\n";
+    foreach ( $aArray as $iIndice => $iValor) {
+        //echo "El valor es: ".$iValor."\n";
+        $dDiferenciaPuntual = abs($iValor - $dMedio);
+        //echo "La diferencia puntual es : ".$dDiferenciaPuntual."\n";
+        if ( $dDiferenciaMinima > $dDiferenciaPuntual ) {
+            $dDiferenciaMinima = $dDiferenciaPuntual;
+            $iPivotKey         = $iIndice;
+        }
+    }
+    //echo "El pivot está en : ".$iPivotKey."\n";
+    //echo "La diferencia es : ".$dDiferenciaMinima."\n";
+    return $iPivotKey;
+}
+?>

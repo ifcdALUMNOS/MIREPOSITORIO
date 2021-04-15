@@ -1,0 +1,105 @@
+<?php
+//include_once 'FuncionesAuxiliares.php';
+function quick_sort2($my_array)
+ {
+	$loe = $gt = array();
+	if(count($my_array) < 2)
+	{
+		return $my_array;
+	}
+	$pivot_key = key($my_array);
+	$pivot = array_shift($my_array);
+	foreach($my_array as $val)
+	{
+		if($val <= $pivot)
+		{
+			$loe[] = $val;
+		}elseif ($val > $pivot)
+		{
+			$gt[] = $val;
+		}
+	}
+	return array_merge(quick_sort2($loe),array($pivot_key=>$pivot),quick_sort2($gt));
+}
+function quick_sort($my_array, $media)
+ {
+	$loe = $gt = array();
+	if(count($my_array) < 2)
+	{
+		return $my_array;
+	}
+	//$pivot_key = key($my_array);
+	//$pivot = array_shift($my_array);
+	//$pivot_key = array_search($media, $my_array);
+	$pivot_key = fPosicionValorMedio( $my_array, $media);
+	$pivot     = $my_array[$pivot_key];
+	//echo "El elemto pivot Key está en la posición: $pivot_key";
+	foreach($my_array as $Indice => $val)
+	{
+	    if ( $Indice != $pivot_key ) {
+	        if($val <= $pivot) {
+		    	$loe[] = $val;
+		    } elseif ($val > $pivot) {
+			    $gt[] = $val;
+	        }
+		}
+	}
+	return array_merge(quick_sort($loe, $media),array($pivot),quick_sort($gt, $media));
+}
+// BubleSort
+function bubbleSort( $aArray) {
+    $iNumElements = count( $aArray );
+    for ( $iContador = 1; $iContador < $iNumElements; $iContador++){
+        for ( $iSubCont = 0;
+            $iSubCont  < ( $iNumElements - $iContador - 1 );
+            $iSubCont++) {
+            if ( $aArray[$iSubCont] > $aArray[$iSubCont+1] ) {
+                $iAux                = $aArray[$iSubCont];
+                $aArray[$iSubCont]   = $aArray[$iSubCont+1];
+                $aArray[$iSubCont+1] = $iAux;
+            }
+        }
+    }
+    /*
+    foreach ( $aArray as $iIndex => $iValor ) {
+        echo $iValor;
+        if ( ( $iIndex + 1 ) != $iNumElements ) {
+            echo " - ";
+        }
+    }
+    */
+    return $aArray;
+}
+// Algoritmo de la cocktelera
+function cocktailSort($my_array)
+ {
+	if (is_string($my_array))
+	$my_array = str_split(preg_replace('/\s+/','',$my_array));
+ 
+	do{
+		$swapped = false;
+		for($i=0;$i<count($my_array);$i++){
+			if(isset($my_array[$i+1])){
+				if($my_array[$i] > $my_array[$i+1]){
+					list($my_array[$i], $my_array[$i+1]) = array($my_array[$i+1], $my_array[$i]);
+					$swapped = true;
+				}
+			}			
+		}
+ 
+		if ($swapped == false) break;
+ 
+		$swapped = false;
+		for($i=count($my_array)-1;$i>=0;$i--){
+			if(isset($my_array[$i-1])){
+				if($my_array[$i] < $my_array[$i-1]) {
+					list($my_array[$i],$my_array[$i-1]) = array($my_array[$i-1],$my_array[$i]);
+					$swapped = true;
+				}
+			}
+		}
+	}while($swapped);
+ 
+	return $my_array;
+}
+?>

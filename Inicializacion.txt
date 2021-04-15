@@ -1,0 +1,5 @@
+<?php
+$my_array = array(3, 0, 2, 5, -1, 4, 1, 15, 32, 34, 12, 54, 254, 34, 5, -12, 34, 5067, 672, -546, 64, 5747, 6546, 5, 37, 54, 7);
+$media = array_sum($my_array)/count($my_array);
+//echo "$media\n";
+?>
